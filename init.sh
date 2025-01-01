@@ -24,6 +24,12 @@ mv -vf resolv.conf /etc/resolv.conf
 mv -vf hosts /etc/hosts
 mv -vf locale.conf /etc/locale.conf
 
+groupadd -g 3003 aid_inet
+groupadd -g 3004 aid_net_raw
+groupadd -g 1003 aid_graphics
+usermod -g 3003 -G 3003,3004 -a _apt
+usermod -G 3003 -a root
+
 apt update
 apt upgrade -y
 apt install -y wget nano neofetch sudo git net-tools
